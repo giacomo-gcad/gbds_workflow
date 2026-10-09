@@ -1,13 +1,13 @@
-# DOPA workflow
+# GBDS workflow
 
-This is repo for [DOPA](https://dopa.jrc.ec.europa.eu/dopa/) workflow.
+This is repo for [GBDS](https://knowledge-for-policy.ec.europa.eu/biodiversity/gbdv_en) workflow.
 
 This repo provides the workflow for 
 
 +  pre-processing of WDPA database and
-+  computation of DOPA indicators
++  computation of GBDS indicators
 
-Preprocessing is aimed to prepare data to be subsequently used both for the preparation of [CEP](https://andreamandrici.github.io/dopa_workflow/flattening/) and for the computation of some of the indicators published in DOPA.
+Preprocessing is aimed to prepare data to be subsequently used both for the preparation of [CEP](https://andreamandrici.github.io/dopa_workflow/flattening/) and for the computation of some of the indicators published in GBDS.
 
 
 The following sections are currently present:
