@@ -17,7 +17,7 @@ NCORES=36
 ########################################################################################################
 # DEFINE CATEGORICAL RASTER (NAME OF GRASS LAYER) AND MAPSET TO BE ANALYZED WITH R.STATS
 IN_RASTER="ecoreg"
-IN_RASTER_MAPSET="ECOREGIONS"
+IN_RASTER_MAPSET="ECO26"
 ########################################################################################################
 
 ## Derived variables
@@ -31,8 +31,9 @@ FINALCSV="r_stats_"${OUTCSV_ROOT}"_"${wdpadate}
 echo "Input raster root: "${IN_RASTER}
 echo "now running r.stats in parallel on 648 CEP tiles and "${IN_RASTER}" using ${NCORES} threads"
 
-for eid in {1..648}
+for ttt in $(grass ${DATABASE}/${LOCATION_LL}/"ECO26" --exec  g.list raster mapset=ECO26)
 do	
+	eid=${ttt#ecoreg_}
 	TMP_MAPSET=rst_${eid}
 	TMP_MAPSET_PATH=${LOCATION_LL_PATH}/${TMP_MAPSET}
 	OUTCSV=${OUTCSV_ROOT}_${eid}.csv
@@ -65,8 +66,9 @@ psql ${dbpar2} -t -c "DELETE FROM ${RESULTSCH}.${FINALCSV} WHERE cid=0"
 rm -rf ${LOCATION_LL_PATH}/rst_*
 echo dyn/*.sh |xargs rm -f
 
-for eid in {1..648}
+for ttt in $(grass ${DATABASE}/${LOCATION_LL}/"ECO26" --exec  g.list raster mapset=ECO26)
 do	
+	eid=${ttt#ecoreg_}
 	rm -f  ${RESULTSPATH_TMP}/${OUTCSV_ROOT}_${eid}.csv
 done
 
